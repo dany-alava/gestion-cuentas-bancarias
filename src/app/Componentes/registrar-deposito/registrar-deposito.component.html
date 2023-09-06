@@ -1,0 +1,100 @@
+<div class="container principal">
+  <div class="row align-items-center">
+    <div class="col">
+      <form [formGroup]="depositForm">
+        <div style="display: flex; justify-content: space-between;">
+          <h2>Registrar deposito bancario</h2>
+          <button type="button" routerLink="/" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+        <div class="form-group">
+          <label for="banco">Banco:</label>
+      
+          <select class="form-control col-11" formControlName="banco">
+            <option value="">
+                Seleccione una cuenta
+            </option>
+            <option *ngFor="let cuenta of cuentas" [value]="cuenta.nombreBanco + + cuenta.numeroCuenta">
+                    {{ cuenta.nombreBanco + " - " + cuenta.numeroCuenta}}
+            </option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="papeleta">Papeleta:</label>
+          <input type="text" class="form-control" id="papeleta" formControlName="papeleta" required>
+          <div *ngIf="depositForm.get('papeleta')?.hasError('required') && depositForm.get('papeleta')?.touched" class="error">
+            El campo Papeleta es requerido.
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="valor">Valor:</label><br>
+          <input type="number" class="form-control" id="valor" formControlName="valor" required>
+          <div *ngIf="depositForm.get('valor')?.hasError('required') && depositForm.get('valor')?.touched" class="error">
+            El campo Valor es requerido.
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="fecha">Fecha:</label><br>
+          <input type="date" class="form-control" id="fecha" max="{{dateNow | date:'yyyy-MM-dd'}}" formControlName="fecha" required>
+          <div *ngIf="depositForm.get('fecha')?.hasError('required') && depositForm.get('fecha')?.touched" class="error">
+            El campo Fecha es requerido.
+          </div><br>
+        </div>
+      
+        <button type="button" class="btn btn-success" (click)="onSubmit()" [disabled]="!depositForm.valid" data-bs-toggle="modal" data-bs-target="#exampleModal">Depositar</button>
+
+      </form>
+    </div>
+
+
+    <div class="col">
+      <div class="container ">
+        <div class="row" style="text-align: center;">
+          <div class="col card">
+            <table class="table">
+              <thead>
+                  <div>
+                    <h4>Historial de depósitos</h4>
+                  </div>
+                  <tr>
+                      <th>Banco</th>
+                      <th>Papeleta</th>
+                      <th>valor</th>
+                      <th>Fecha</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let deposito of depositos">
+                      <td> {{ deposito.banco }} </td>
+                      <td> {{ deposito.papeleta }} </td>
+                      <td> ${{ deposito.valor }} </td>
+                      <td> {{ deposito.fecha }} </td>
+                  </tr>
+              </tbody>
+            </table><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Perfecto!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Su transferencia se realizó correctamente
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Continuar</button>
+      </div>
+    </div>
+  </div>
+</div>

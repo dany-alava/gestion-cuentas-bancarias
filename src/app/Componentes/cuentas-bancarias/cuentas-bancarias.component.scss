@@ -1,0 +1,59 @@
+/* Estilos para el formulario */
+.principal {
+  margin-top: 3%;
+  width: 70%;
+  border-radius: 15px;
+  border: 3px solid (67, 58, 201)40;
+  background-image: linear-gradient(-45deg, #1d78d3 20%, #002855 80%);
+}
+
+form {
+    width: 90%;
+    margin: 9%;
+    padding: 20px;
+    color: #dadfe9;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .depositar {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Estilos para mensajes de error */
+  .error-message {
+    color: #f44336;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Estilos para mensajes de éxito */
+  .success-message {
+    color: #4caf50;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  svg {
+    width: 70%;
+    height: 70%;
+    top: 0;
+    left: 0;
+  }
+  
